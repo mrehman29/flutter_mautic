@@ -1,9 +1,5 @@
-Here’s a sample package description for your Flutter package that manages contacts and tracks user events in Mautic:
-
----
 
 **flutter_mautic**  
-Version: 0.0.1
 
 A Flutter package that provides easy integration with the Mautic API to manage contacts and track user events in your app. With this package, you can seamlessly create, update, and manage contacts and track specific user events within your Flutter application, helping you automate and optimize your marketing efforts.
 
@@ -45,6 +41,3 @@ await mauticService.trackEvent('contact_id_here', eventData);
 ### Installation
 Refer to the official [Mautic API Documentation](https://developer.mautic.org/#rest-api) for detailed API references and functionality.
 
----
-
-This description highlights the core functionality of your package, how to use it, and encourages developers to easily integrate it into their projects.
