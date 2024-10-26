@@ -1,50 +1,99 @@
-Here’s a sample package description for your Flutter package that manages contacts and tracks user events in Mautic:
+# Flutter Mautic
 
----
+Flutter Mautic provides a convenient wrapper around the Mautic API for Flutter applications, enabling easy management of contacts, campaigns, and custom fields. With this package, you can integrate Mautic's powerful CRM capabilities into your Flutter app to enhance your customer engagement.
 
-**flutter_mautic**  
-Version: 0.0.1
+## Features
 
-A Flutter package that provides easy integration with the Mautic API to manage contacts and track user events in your app. With this package, you can seamlessly create, update, and manage contacts and track specific user events within your Flutter application, helping you automate and optimize your marketing efforts.
+- **Contact Management**: Retrieve and delete contacts within your app.
+- **Campaign Management**: Add or remove contacts from Mautic campaigns.
+- **Field Management**: Access and manage Mautic custom fields.
+- **Authorization**: Secures API requests with Basic Authentication.
+- **Singleton Pattern**: Access Mautic services through a singleton instance for easy initialization.
 
-### Features
-- **Contact Management**: Add new contacts or update existing ones in Mautic directly from your app.
-- **Event Tracking**: Capture user interactions or events and sync them to Mautic for advanced analytics and marketing automation.
-- **Basic Authentication**: Securely integrate with Mautic using basic authentication.
-- **Simple Integration**: Minimal configuration required for integration with your existing or new Flutter projects.
+## Installation
 
-### Getting Started
-1. Add `flutter_mautic` to your project’s `pubspec.yaml`.
-2. Initialize `MauticService` with your Mautic API credentials and base URL.
-3. Use the service to manage contacts and track events in Mautic.
+Add the package to your `pubspec.yaml` file:
 
-### Example Usage
-```dart
-final mauticService = MauticService(
-  mauticBaseUrl: 'https://yourmauticinstance.com',
-  username: 'yourusername',
-  password: 'yourpassword',
-);
-
-// Create or update a contact
-final contactData = {
-  'email': 'user@example.com',
-  'firstname': 'John',
-  'lastname': 'Doe',
-};
-await mauticService.createOrUpdateContact(contactData);
-
-// Track an event
-final eventData = {
-  'name': 'login',
-  'description': 'User logged in.',
-};
-await mauticService.trackEvent('contact_id_here', eventData);
+```yaml
+dependencies:
+  flutter_mautic: ^0.0.1
 ```
 
-### Installation
-Refer to the official [Mautic API Documentation](https://developer.mautic.org/#rest-api) for detailed API references and functionality.
+Run `flutter pub get` to install the package.
 
----
+## Usage
 
-This description highlights the core functionality of your package, how to use it, and encourages developers to easily integrate it into their projects.
+### Initialization
+
+To begin, initialize `MauticService` with your Mautic instance's credentials:
+
+```dart
+import 'package:flutter_mautic/mautic_service.dart';
+
+void main() {
+  final mauticService = MauticService();
+  mauticService.initialize(
+    mauticBaseUrl: 'https://your-mautic-instance.com',
+    username: 'your-username',
+    password: 'your-password',
+  );
+}
+```
+
+### Contact Service
+
+Manage Mautic contacts easily:
+
+```dart
+final contactService = mauticService.contactService;
+
+// Get contact by ID
+contactService.getContactById('123').then((contact) {
+  print('Contact Info: $contact');
+});
+
+// Delete a contact by ID
+contactService.deleteContact('123').then((_) {
+  print('Contact deleted successfully.');
+});
+```
+
+### Campaign Service
+
+Add or remove contacts from campaigns:
+
+```dart
+final campaignService = mauticService.campaignService;
+
+// Add contact to campaign
+campaignService.addToCampaign('campaignId', 'contactId');
+
+// Remove contact from campaign
+campaignService.removeFromCampaign('campaignId', 'contactId');
+```
+
+### Fields Service
+
+Retrieve and manage custom fields in Mautic:
+
+```dart
+final fieldsService = mauticService.fieldsService;
+
+// Retrieve all contact fields
+fieldsService.getCurrentFields().then((fields) {
+  print('Contact Fields: $fields');
+});
+
+// Check if a field exists
+fieldsService.doesFieldExist('fieldAlias').then((exists) {
+  print('Field exists: $exists');
+});
+```
+
+## Contributing
+
+Contributions are welcome! If you find a bug or want to add a feature, please create an issue or submit a pull request on GitHub.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

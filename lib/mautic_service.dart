@@ -1,10 +1,12 @@
+import 'package:flutter_mautic/fields/mautic_fields_service.dart';
 import 'package:logging/logging.dart';
 import 'package:flutter_mautic/contact/mautic_contact_service.dart';
-import 'package:flutter_mautic/tracking/mautic_tracking_service.dart';
+import 'package:flutter_mautic/campaign/mautic_campaign_service.dart';
 
 class MauticService {
   late ContactService contactService;
-  late TrackingService trackingService;
+  late CampaignService campaignService;
+  late FieldsService fieldsService;
 
   static final MauticService _instance = MauticService._internal();
 
@@ -35,8 +37,11 @@ class MauticService {
     contactService = ContactService();
     contactService.initialize(mauticBaseUrl, username, password);
 
-    trackingService = TrackingService();
-    trackingService.initialize(mauticBaseUrl, username, password);
+    campaignService = CampaignService();
+    campaignService.initialize(mauticBaseUrl, username, password);
+
+    fieldsService = FieldsService();
+    fieldsService.initialize(mauticBaseUrl, username, password);
 
     _isInitialized = true;
     _logger.info('MauticService has been initialized.');

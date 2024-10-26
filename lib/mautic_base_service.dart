@@ -7,7 +7,7 @@ abstract class MauticBaseService {
   String? password;
   late http.Client httpClient;
 
-  MauticBaseService();
+  Map<String, dynamic> _currentFields = {};
 
   void initialize(String mauticBaseUrl, String username, String password) {
     this.mauticBaseUrl = mauticBaseUrl;
@@ -28,5 +28,15 @@ abstract class MauticBaseService {
       'Authorization': _getBasicAuthHeader(),
       'Content-Type': 'application/json',
     };
+  }
+
+  // Set or update current fields from Mautic
+  void setCurrentFields(Map<String, dynamic> currentFields) {
+    _currentFields = currentFields;
+  }
+
+  // Return current fields
+  Map<String, dynamic> currentFields() {
+    return _currentFields;
   }
 }

@@ -1,5 +1,5 @@
 name: flutter_mautic
-description: "A Flutter package that provides easy integration with the Mautic API to manage contacts and track user events in your app."
+description: "Flutter Mautic provides seamless integration with the Mautic API, allowing Flutter developers to easily manage contacts, campaigns, and custom fields within their apps. This package simplifies operations such as adding or removing contacts from campaigns, updating contact fields, and retrieving Mautic data, offering a convenient, secure way to interact with Mautic's CRM functionalities directly from Flutter."
 version: 0.0.1
 homepage: https://github.com/mrehman29/flutter_mautic
 
