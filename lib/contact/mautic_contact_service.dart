@@ -49,7 +49,8 @@ class ContactService extends MauticBaseService {
   }
 
   // Function to update a specific contact by adding custom fields
-  Future<void> updateContact(String contactId, Map<String, dynamic> contactData) async {
+  Future<void> updateContact(
+      String contactId, Map<String, dynamic> contactData) async {
     final url = '$mauticBaseUrl/api/contacts/$contactId/edit';
     final headers = getHeaders();
 

@@ -15,7 +15,8 @@ class FieldsService extends MauticBaseService {
         fields = jsonDecode(response.body)['fields'] as Map<String, dynamic>;
         setCurrentFields(fields);
       } else {
-        throw Exception('Failed to retrieve contact fields: ${response.statusCode}');
+        throw Exception(
+            'Failed to retrieve contact fields: ${response.statusCode}');
       }
     }
 
